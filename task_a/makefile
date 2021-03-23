@@ -1,6 +1,7 @@
 FLAGS = -Wall -Werror -g 
 CC = gcc
-TARGET = main1 main2
+TARGET = main1 main2 main3
+HEADER = hello_ariel.h
 
 SUB1 = main1_1.c hello_ariel.c
 
@@ -19,21 +20,26 @@ all: $(TARGET)
 main1: $(SUB1:.c=.o)
 	$(CC) $(FLAGS) -o $@ $(SUB1:.c=.o) 
 
-main1_1.o: main1_1.c 
+main1_1.o: main1_1.c $(HEADER)
 	$(CC) $(FLAGS) -c $< 
 
-hello_ariel.o: hello_ariel.c hello_ariel.h
+hello_ariel.o: hello_ariel.c $(HEADER)
 	$(CC) $(FLAGS) -c $< 
 
 #SubTask2
 
-main2: libHello.so
+main2: libHello.so $(HEADER)
 	$(CC) $(FLAGS) $(SUB2) -o $@  
 
-libHello.so: hello_ariel.c
+libHello.so: hello_ariel.c $(HEADER)
 	$(CC) -o $@ $(LDFALGS) -fPIC $<
+
+#SubTask3
+
+main3: main1_3.c $(HEADER)
+	$(CC) $(FLAGS) $< -fPIC -ldl -o $@
 
 
 .PHONY: clean 
 clean:
-	$(RM) *.o *.a *.so $(TARGET)
+	$(RM) *.o *.a *.so $(TARGET) 2>/dev/null
