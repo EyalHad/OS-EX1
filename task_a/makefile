@@ -1,5 +1,6 @@
 FLAGS = -Wall -Werror -g 
 CC = gcc
+TARGET = main1 main2
 SUB1 = main1_1.c hello_ariel.c
 
 SUB2 = main1_2.c ./hello_ariel.so
@@ -7,7 +8,7 @@ LDFALGS = -shared
 RM = rm -rf
 
 .PHONY: all
-all: main1 main2
+all: $(TARGET)
 
 #SubTask1
 
@@ -31,4 +32,4 @@ hello_ariel.so: hello_ariel.o
 
 .PHONY: clean 
 clean:
-	$(RM) *.o *.a *.so all
+	$(RM) *.o *.a *.so $(TARGET)
