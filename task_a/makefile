@@ -1,13 +1,13 @@
 FLAGS = -Wall -Werror -g 
 CC = gcc
-TARGET = main1 main2 main3
+TARGET = main1_1 main1_2 main1_3
 HEADER = hello_ariel.h
 
 SUB1 = main1_1.c hello_ariel.c
 
 SUB2 = main1_2.c -L. -l Hello
 LDFALGS = -shared
-export LD_LIBARAR_PATH=.
+export LD_LIBRARY_PATH=.
 
 RM = rm -rf
 
@@ -17,7 +17,7 @@ all: $(TARGET)
 
 #SubTask1
 
-main1: $(SUB1:.c=.o)
+main1_1: $(SUB1:.c=.o)
 	$(CC) $(FLAGS) -o $@ $(SUB1:.c=.o) 
 
 main1_1.o: main1_1.c $(HEADER)
@@ -28,7 +28,7 @@ hello_ariel.o: hello_ariel.c $(HEADER)
 
 #SubTask2
 
-main2: libHello.so $(HEADER)
+main1_2: libHello.so $(HEADER)
 	$(CC) $(FLAGS) $(SUB2) -o $@  
 
 libHello.so: hello_ariel.c $(HEADER)
@@ -36,9 +36,8 @@ libHello.so: hello_ariel.c $(HEADER)
 
 #SubTask3
 
-main3: main1_3.c $(HEADER)
+main1_3: main1_3.c $(HEADER)
 	$(CC) $(FLAGS) $< -fPIC -ldl -o $@
-
 
 .PHONY: clean 
 clean:
