@@ -1,7 +1,7 @@
 #define _GNU_SOURCE
 #include <sched.h>
-#include <unistd.h>
 #include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h>
 
 #define STACK_SIZE 10000
@@ -24,11 +24,14 @@ int child(void *params)
     print("child thread");
 }
 
+
 int main()
 {
 
-    int res = clone(child, child_stack + STACK_SIZE, CLONE_PARENT, 0);
-    printf("clone res = %d\n", res);
+    int res1 = clone(child, child_stack + STACK_SIZE, CLONE_PARENT, 0);
+    int res2 = clone(child, child_stack + STACK_SIZE, CLONE_PARENT, 0);
+    printf("clone res = %d\n", res1);
+    printf("clone res = %d\n", res2);
 
     print("parent");
 

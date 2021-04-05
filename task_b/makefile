@@ -1,10 +1,9 @@
 CC = gcc
-FLAGS = -Wall -Werror -g 
+FLAGS = -Wall -g 
 TARGET = main2_1 main2_2 main2_3
-RM = rm -rf
 
 .PHONY: all
-all: $(TARGET)
+all: $(TARGET) main2_4
 
 main2_1: main2_1.c
 	$(CC) $(FLAGS) -o $@ $<
@@ -15,5 +14,9 @@ main2_2: main2_2.c
 main2_3: main2_3.c
 	$(CC) $(FLAGS) -o $@ $<
 
+main2_4: main2_4.c $(TARGET)
+	$(CC) $(FLAGS) -o $@ $<	
+
 .PHONY: clean
-clean: $(RM) $(TARGET) 2>/dev/null			
+clean:
+	rm -rf $(TARGET) 2>/dev/null			

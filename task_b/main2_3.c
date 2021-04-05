@@ -1,6 +1,6 @@
-#include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <sys/types.h>
 #include <syslog.h>
 
@@ -10,13 +10,15 @@ int main()
 
     if (pid == 0)
     {
+        //we are in child
+
         //move to root dir. used to not block the file system
         chdir("/");
 
         //move it to a new session, so the parent maybe will closed
         setsid();
 
-        printf("starting my daemon\n");
+        printf("starting my daemon!\n");
 
         //close I/O
         close(stdout);
@@ -24,12 +26,12 @@ int main()
         close(stderr);
 
         //open log
-        openlog("myDaemon\n", LOG_PID, LOG_DAEMON);
-        syslog(LOG_NOTICE, "Daemon started\n");
+        openlog("myDeamon!", LOG_PID, LOG_DAEMON);
+        syslog(LOG_NOTICE, "Daemon started");
         usleep(3000000);
-        syslog(LOG_NOTICE, "Daemon working...\n");
+        syslog(LOG_NOTICE, "Daemon working...");
         usleep(3000000);
-        syslog(LOG_NOTICE, "Daemon finished\n");
+        syslog(LOG_NOTICE, "Daemon finished");
     }
     else
     {

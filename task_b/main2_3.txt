@@ -1,0 +1,3 @@
+Apr  5 14:20:00 shai myDeamon![7042]: Daemon started
+Apr  5 14:20:03 shai myDeamon![7042]: Daemon working...
+Apr  5 14:20:06 shai myDeamon![7042]: Daemon finished

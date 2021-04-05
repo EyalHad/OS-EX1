@@ -1,0 +1,2 @@
+hello ariel
++++ exited (status 0) +++

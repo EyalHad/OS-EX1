@@ -26,8 +26,8 @@ int main()
         { //Success in making a grand child process
             print("grand child");
 
-            char *args[2] = {"./Subtask2.1", NULL}; //File name and arguments
-            execvp(args[0], args);                  //The exec type system calls allow a process to run any program files
+            // char *args[2] = {"./main2_1", NULL}; //File name and arguments
+            // execvp(args[0], args);               //The exec type system calls allow a process to run any program files
         }
         else
         {

@@ -3,19 +3,22 @@
 #include <stdio.h>
 #include <dlfcn.h>
 
-void (*hello_ariel)();
 
-bool init_libarary(){
-    void *hdl = dlopen("./libHello.so",RTLD_LAZY);
-    if ( NULL == hdl){return false;}
-    return true;
-}
 int main() {
-    if (init_libarary())
-    {
-        hello_ariel();
-    } else {
-        printf("Failed to load library\n");
+
+
+    void *handle = dlopen("./libHello.so", RTLD_LAZY);
+    if(handle == NULL) {
+        printf("Library not found!\n");
+        return -1;
     }
+    void (*fnc)() = (void *)dlsym(handle, "hello_ariel");
+    if(fnc == NULL) {
+        printf("Function not found!\n");
+        return -1;
+    }
+
+    fnc();
+
     return 0;
 }

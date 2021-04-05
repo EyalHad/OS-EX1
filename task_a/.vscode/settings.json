@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "sched.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "types.h": "c"
     }
 }
